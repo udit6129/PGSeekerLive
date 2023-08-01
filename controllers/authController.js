@@ -25,11 +25,12 @@ const createSendToken = (user, statusCode, req, res) => {
       ),
       // domain: "*",
       // domain: "localhost",
-      // httpOnly: true, //  with "httpOnly :true" browser can not modify our cookie, it can just recieve it
+      httpOnly: true, //  with "httpOnly :true" browser can not modify our cookie, it can just recieve it
+      path: "/",
     };
 
-    //   if (req.secure || req.headers["x-forwarded-proto"] === "https")
-    //     cookieOptions.secure = true;
+    if (req.secure || req.headers["x-forwarded-proto"] === "https")
+      cookieOptions.secure = true;
 
     res.cookie("jwt", token, cookieOptions);
 
