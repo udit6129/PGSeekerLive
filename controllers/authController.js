@@ -28,6 +28,7 @@ const createSendToken = (user, statusCode, req, res) => {
       httpOnly: true, //  with "httpOnly :true" browser can not modify our cookie, it can just recieve it
       // path: "/",
       // secure: true,
+      sameSite: "none",
     };
 
     if (req.secure || req.headers["x-forwarded-proto"] === "https")
