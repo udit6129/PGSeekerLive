@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // MIDDLEWARES
 // app.use(multerParse.none());
 const corsOptions = {
-  origin: "*",
+  origin: process.env.BASE_URL,
   // origin: "http://localhost:3000",
   credentials: true,
 };
