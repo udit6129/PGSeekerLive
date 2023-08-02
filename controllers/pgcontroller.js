@@ -117,7 +117,14 @@ exports.uploadPics = async (req, res, next) => {
       // clear any files that maybe left due to any error or other reason
       req.filenames.forEach((file) => {
         if (fs.existsSync("./uploads/" + file)) {
-          fs.unlinkSync("./uploads/" + file);
+          try {
+            fs.unlinkSync("./uploads/" + file);
+          } catch (err) {
+            console.log(
+              `Locally uploaded image not deleted : ./uploads/${file}`
+            );
+            console.log(err);
+          }
         }
       });
     }
