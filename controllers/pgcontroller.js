@@ -5,7 +5,6 @@ const fs = require("fs");
 
 const AppError = require("./../utils/appError");
 const Pg = require("./../models/pgmodel.js");
-const { log } = require("console");
 
 // const capitalizeEachWord = (str) => {
 //   const capital = str.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
@@ -83,7 +82,8 @@ const uploadToCloudinary = async (localFilePath, req) => {
 
     // throw new Error("Error");
   } catch (err) {
-    fs.unlinkSync(localFilePath);
+    // fs.unlinkSync(localFilePath);
+    console.log("Me");
     console.log(err);
     throw err;
   }
@@ -138,8 +138,10 @@ const uploadToCloudinaryWithRetries = async (
   while (retries < maxRetries) {
     try {
       const result = await uploadToCloudinary(localFilePath, req);
+      console.log("Yes");
       return result;
     } catch (err) {
+      console.log("no");
       retries++;
       console.error(`Upload attempt ${retries} failed: ${err}`);
       await wait(retryDelay);
