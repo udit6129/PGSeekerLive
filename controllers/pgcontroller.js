@@ -113,6 +113,13 @@ exports.uploadPics = async (req, res, next) => {
       const results = await Promise.all(promises);
       const imageUrlList = results.map((result) => result.url);
       req.body.images = imageUrlList;
+
+      // clear any files that maybe left due to any error or other reason
+      req.filenames.forEach((file) => {
+        if (fs.existsSync("./uploads/" + file)) {
+          fs.unlinkSync("./uploads/" + file);
+        }
+      });
     }
     next();
     // const newPg = await Pg.create(req.body);
