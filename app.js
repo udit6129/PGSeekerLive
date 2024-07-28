@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // MIDDLEWARES
 // app.use(multerParse.none());
 const corsOptions = {
-  origin: [process.env.BASE_URL, "http://localhost:3000","https://pgseekers.netlify.app","https://pgseekers.netlify.app"],
+  origin: [process.env.BASE_URL, "http://localhost:3000","https://pgseekers.netlify.app","https://pgseeker.netlify.app"],
   // origin: "http://localhost:3000",
   credentials: true,
   methods: ["GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS"],
